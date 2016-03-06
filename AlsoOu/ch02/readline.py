@@ -1,6 +1,7 @@
 def for_loop(data):
     for line in data:
-        print line
+        print line.split(",")[0],
+        print line.split(",")[-2]
 
 def readlines():
     fd = open("test.csv", "r")
