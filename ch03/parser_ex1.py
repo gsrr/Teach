@@ -9,8 +9,8 @@ for line in data:
         if "class=\"title\"" in line:
             flag = 1
             print line
-        elif flag == 1:
+        elif flag is 1:
             flag = 0
             print line
 
-
+                

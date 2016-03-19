@@ -5,10 +5,18 @@ def ex2():
     opener = urllib2.build_opener(urllib2.HTTPSHandler(debuglevel=1))
     opener.addheaders.append(('Cookie', 'over18=1'))
     fd = opener.open("https://www.ptt.cc/bbs/Gossiping/index.html")
+    #read , readline , readlines
+    data = fd.readlines()
+    print type(data)
+    for line in data:
+        print line.strip()
+
+    '''
     lines = fd.readlines()
     for line in lines:
-        #print line
+        print line
         pass
+    '''
 
 def ex1():
     fd = urllib2.urlopen("https://www.ptt.cc/bbs/Gossiping/index.html")
