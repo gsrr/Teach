@@ -6,11 +6,11 @@ url = "http://gcis.nat.gov.tw/pub/cmpy/cmpyInfoListAction.do"
 
 params = {
     "brBanNo" : "",
-    "imageCode" : "020189",
+    "imageCode" : "771278",
     "isShowEUC" : "N",
     "method" : "query",
     "otherEnterFlag" : "false",
-    "queryKey" : "sed6237",
+    "queryKey" : "",
     "queryStr" : "04541302",
     "selCmpyType" : "1",
     "selQueryType" : "2",
@@ -22,7 +22,7 @@ headers = {
         "Accept-Language" : "en-US,en;q=0.5",
         "Cache-Control" : "max-age=0",
         "Connection" : "keep-alive",
-        "Cookie" : "JSESSIONID=114ba2f3080eb0353e14168f7ac2; _ga=GA1.3.1701390504.1455419117",
+        "Cookie" : "JSESSIONID=57dfbd41b81343ca13f94e0d00c5; _ga=GA1.3.1701390504.1455419117",
         "Host" : "gcis.nat.gov.tw",
         "Referer" : "https://gcis.nat.gov.tw/pub/cmpy/cmpyInfoListAction.do",
         "User-Agent" : "Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101 Firefox/38.0"
