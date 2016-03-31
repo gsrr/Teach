@@ -8,8 +8,8 @@ def extract(line, fw):
     ptn_title = '">(.+)<'
     obj = re.search(ptn_url, line)
     if obj != None:
-        print obj.group(1)
-        #fw.write(obj.group(1))
+        #print obj.group(1)
+        fw.write(obj.group(1))
         
     obj = re.search(ptn_title, line)
     if obj != None:
