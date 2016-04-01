@@ -9,7 +9,7 @@ def ex2():
     data = fd.readlines()
     print type(data)
     for line in data:
-        print line.strip()
+        print line.strip().decode("utf-8").encode("big5")
 
     '''
     lines = fd.readlines()
