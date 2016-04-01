@@ -8,7 +8,6 @@ def extract(line):
     ptn_title = '">(.+)<'
     obj = re.search(ptn_url, line)
     if obj != None:
-        print obj.group(1)
         return obj.group(1)
         #fw.write(obj.group(1))
         
@@ -17,15 +16,6 @@ def extract(line):
         pass
         #print obj.group(1)
         #fw.write(obj.group(1))
-
-def readDB(db):
-    data = {}
-    fr = open(db, "r")
-    lines = fr.readlines()
-    for line in lines:
-        line = line.strip()
-        data[line] = 1
-    return data
 
 def readNew(page):
     data = []
@@ -43,16 +33,15 @@ def readNew(page):
                 data.append(extract(line))
     return data
     
-#step 1
-data_new = readNew("test_new.html")
-#step 2
-data_db = readDB("db.ptt")
-#step 3
+data_new = readNew("test.html")
+last = data_db[-1]
+insert = 0
 for data in data_new:
-    if data_db.has_key(data):
-        print "Exist, Ignore"
-    else:
-        print "Not Exist, Insert"
-        fw = open("db", "a")    #read , write, append
-        fw.write(data + "\n")
+    if insert == 1:
+        print data , "insert"
+        continue
+    if data == last:
+        insert = 1
+    print data , "ignore"
 
+        

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import string
 import re
 
@@ -10,15 +11,18 @@ def extract(line, fw):
     if obj != None:
         #print obj.group(1)
         fw.write(obj.group(1))
-        
+    
+    fw.write(",")
     obj = re.search(ptn_title, line)
     if obj != None:
-        print obj.group(1)
-        #fw.write(obj.group(1))
+        #print obj.group(1)
+        fw.write(obj.group(1))
     fw.write("\n")
 
 fd = open("test.html", "r")
-fw = open("db.ptt", "a")
+fw = open("db.ptt", "w")
+title = "網址,標題\n"
+fw.write(title)
 data = fd.readlines()
 flag = 0
 for line in data:
