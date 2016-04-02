@@ -27,8 +27,15 @@ headers = {
         "Host" : "gcis.nat.gov.tw",
         "Referer" : "https://gcis.nat.gov.tw/pub/cmpy/cmpyInfoListAction.do",
         "User-Agent" : "Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101 Firefox/38.0"
-
 }
+
+#1 connect web page
+
+#2 read header
+#3 read image code
+#4 input image code & query string
+#5 connect web page -> Get result
+
 params = urllib.urlencode(params)
 req = urllib2.Request(url, params, headers)
 gcontext = ssl.SSLContext(ssl.PROTOCOL_TLSv1)
