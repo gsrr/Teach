@@ -20,6 +20,7 @@ headers = {
         "User-Agent" : "Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101 Firefox/38.0"
 }
 
+'''
 #1 connect web page
 params = urllib.urlencode(params)
 req = urllib2.Request(url, params, headers)
@@ -67,6 +68,48 @@ data = response.read()
 data = data.decode("big5").encode("utf-8")
 fw = open("target.html", "w")
 fw.write(data)
+fw.close()
+'''
+
+#6 Extract Information
+cmpyInfo = []
+fr = open("target.html", "r")
+lines = fr.readlines()
+flag = 0
+fflag = 0
+for line in lines:
+    line = line.strip()
+    if line == "":
+        continue
+    if "Search Result iterate" in line:
+        flag = 1
+        continue 
+    if flag == 1:
+        if "center" in line or "cmpyInfoAction" in line:
+            fflag = 1
+            continue
+        if fflag == 1:
+            print line
+            cmpyInfo.append(line)
+            fflag = 0
+        if "</TABLE>" in line:
+            break
+
+print cmpyInfo
+cmpyInfo.pop(0)
+print cmpyInfo
+#7 Write Information to file (csv format)
+fw = open("target.csv", "w")
+fw.write(",".join(cmpyInfo))
+'''
+cnt = 0
+for line in cmpyInfo:
+    fw.write(line)
+    cnt += 1
+    if cnt == (len(cmpyInfo) - 1):
+        break
+     fw.write(",")
+'''
 fw.close()
 
 
