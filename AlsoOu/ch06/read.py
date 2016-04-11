@@ -1,0 +1,48 @@
+import cv2
+import numpy as np
+img = cv2.imread("code.jpg")
+b,g,r = cv2.split(img)
+img_f = cv2.imread("first.jpg")
+err = np.sum(img.astype("float") - img_f.astype("float")) ** 2
+err /= float(img.shape[0] * img.shape[1])
+print err
+
+#same image
+img_f = cv2.imread("code.jpg")
+err = np.sum(img.astype("float") - img_f.astype("float")) ** 2
+err /= float(img.shape[0] * img.shape[1])
+print err
+
+#number image
+img = cv2.imread("five_7.jpg")
+for i in range(2,8):
+    print i
+    img_f = cv2.imread("five_%d.jpg"%i)
+    print img_f.shape[0], img_f.shape[1]
+
+'''
+img_f = cv2.imread("five_%d.jpg"%i)
+err = np.sum(img.astype("float") - img_f.astype("float")) ** 2
+err /= float(img.shape[0] * img.shape[1])
+print err
+'''
+'''
+#1 read binary(gray)
+fr = open("first.jpg", "rb")
+print ord(fr.read(1))
+print ord(fr.read(1))
+print ord(fr.read(1))
+print ord(fr.read(1))
+print ord(fr.read(1))
+print ord(fr.read(1))
+
+print
+#2 read binary(colorful)
+fr = open("code.jpg", "rb")
+print ord(fr.read(1))
+print ord(fr.read(1))
+print ord(fr.read(1))
+print ord(fr.read(1))
+print ord(fr.read(1))
+print ord(fr.read(1))
+'''
