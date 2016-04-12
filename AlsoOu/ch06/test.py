@@ -53,13 +53,13 @@ os.system("cp four.jpg ~/public_html/")
 #3 contour finding
 #reference : http://opencvpython.blogspot.tw/2012/06/hi-this-article-is-tutorial-which-try.html
 #contours, hierarchy = cv2.findContours(edges,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
-contours, hierarchy = cv2.findContours(dilation,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+contours, hierarchy = cv2.findContours(dilation.copy(),cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
 cnt = 0
 for c in contours:
     (x,y,w,h) = cv2.boundingRect(c)
     if w > 15 and h > 15:
         print (x,y,w,h)
-        roi = edges[y:y+h, x:x+w]
+        roi = dilation[y:y+h, x:x+w]
         thresh = roi.copy()
         cv2.imwrite("five_%d.jpg"%cnt, thresh)
         os.system("cp five_%d.jpg ~/public_html/"%cnt)
