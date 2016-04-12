@@ -56,8 +56,8 @@ contours, hierarchy = cv2.findContours(dilation,cv2.RETR_TREE,cv2.CHAIN_APPROX_S
 cnt = 0
 for c in contours:
     (x,y,w,h) = cv2.boundingRect(c)
-    print (x,y,w,h)
     if w > 15 and h > 15:
+        print (x,y,w,h)
         roi = edges[y:y+h, x:x+w]
         thresh = roi.copy()
         cv2.imwrite("five_%d.jpg"%cnt, thresh)
@@ -80,3 +80,22 @@ print len(contours)
 cv2.drawContours(imgray, contours, 3, (0,255,0), 3)
 cv2.imwrite("third.jpg", imgray)
 os.system("cp third.jpg ~/public_html/")
+
+#7 contour finding
+print
+im = cv2.imread('five_3.jpg')
+imgray = cv2.cvtColor(im,cv2.COLOR_BGR2GRAY)
+ret,thresh = cv2.threshold(imgray,127,255,0)
+contours, hierarchy = cv2.findContours(thresh,cv2.RETR_CCOMP ,cv2.CHAIN_APPROX_SIMPLE)
+cnt = 0
+for c in contours:
+    print c    
+    '''
+    (x,y,w,h) = cv2.boundingRect(c)
+    print (x,y,w,h)
+    roi = edges[y:y+h, x:x+w]
+    thresh = roi.copy()
+    cv2.imwrite("seven_%d.jpg"%cnt, thresh)
+    os.system("cp seven_%d.jpg ~/public_html/"%cnt)
+    cnt += 1
+    '''
