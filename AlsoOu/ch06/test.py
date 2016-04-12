@@ -3,7 +3,9 @@
 import numpy as np
 import cv2
 import os
+import time
 
+os.system("rm -rf five_*")
 #1 read/write image
 '''
 second argument is a flag which specifies the way image should be read.
@@ -57,14 +59,16 @@ contours, hierarchy = cv2.findContours(dilation.copy(),cv2.RETR_TREE,cv2.CHAIN_A
 cnt = 0
 for c in contours:
     (x,y,w,h) = cv2.boundingRect(c)
-    if w > 15 and h > 15:
-        print (x,y,w,h)
-        roi = dilation[y:y+h, x:x+w]
-        thresh = roi.copy()
-        cv2.imwrite("five_%d.jpg"%cnt, thresh)
-        os.system("cp five_%d.jpg ~/public_html/"%cnt)
-        cnt += 1
-    
+    if w < 100:
+        if w > 15 and h > 15:
+            print (x,y,w,h)
+            roi = dilation[y:y+h, x:x+w]
+            thresh = roi.copy()
+            cv2.imwrite("five_%d.jpg"%cnt, thresh)
+            os.system("cp five_%d.jpg ~/public_html/"%cnt)
+            cnt += 1
+
+#time.sleep(30)
 '''
 
 contours is a Python list of all the contours in the image. Each individual contour is a Numpy array of (x,y) coordinates of boundary points of the object.
