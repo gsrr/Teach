@@ -26,6 +26,10 @@ def greater(a, b):
         else:
             return -1
 
+def mywrite(dst, src):
+    cv2.imwrite(dst, src)
+    os.system( "cp %s ~/public_html/"%dst)
+
 url = "https://gcis.nat.gov.tw/pub/cmpy/cmpyInfoListAction.do"
 
 params = {}
@@ -62,18 +66,15 @@ for i in range(10):
     image = cv2.imread("code%d.jpg"%i, 0)
     kernel = np.ones((2,2), np.uint8)
     dilation = cv2.dilate(image, kernel, iterations=1)
-    cv2.imwrite("dilation.jpg", dilation)
-    os.system( "cp dilation.jpg ~/public_html/")
+    mywrite("dilation%d.jpg"%i, dilation)
     resized_image = cv2.resize(dilation, (0,0), fx=3, fy=1) 
     image = resized_image
     edges = cv2.Canny(image,100,200)
-    cv2.imwrite("edges.jpg", edges)
-    os.system( "cp edges.jpg ~/public_html/")
+    mywrite("edges%d.jpg"%i, edges)
 
     kernel = np.ones((2,2), np.uint8)
     dilation2 = cv2.dilate(edges, kernel, iterations=1)
-    cv2.imwrite("dilation2.jpg", dilation2)
-    os.system( "cp dilation2.jpg ~/public_html/")
+    mywrite("dilation2%d.jpg"%i, dilation2)
 
     contours, hierarchy = cv2.findContours(dilation2.copy(),cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
     contours.sort(greater)
@@ -91,4 +92,4 @@ for i in range(10):
                 time.sleep(1)
 
 
-
+os.system("rm -rf *.jpg")
