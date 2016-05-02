@@ -32,7 +32,7 @@ class MyHTMLParser(HTMLParser):
 
     def handle_data(self, data):
         if self.meettr == 1:
-            self.myprint(data + " ")
+            self.myprint(data.strip() + ",")
 
     def handle_starttag(self, tag, attrs):
         if tag == "tr":
