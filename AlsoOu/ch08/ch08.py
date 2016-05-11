@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import re
 
 def readfile(path):
@@ -52,8 +53,9 @@ class MyHTMLParser(HTMLParser.HTMLParser):
     def handle_data(self, data):
         if self.meettr == 1:
             #print data.strip() + ",",
+            # data = data.decode("utf-8").encode("big5")
             self.fw.write(data.strip() + ",")
-
+            
 fw = open("tableData.csv", "w")
 obj = MyHTMLParser(fw) #instance or object
 obj.feed(table)
